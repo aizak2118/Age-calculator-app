@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <main>
+    <!-- input -->
+    <div class="input-wrapper">
+      <div class="input-item">
+        <h2 class="input-title">DAY</h2>
+        <input type="text" class="input" id="dayIn" placeholder="DD">
+        <p class="error"></p>
+      </div>
+      <div class="input-item">
+        <h2 class="input-title">MONTH</h2>
+        <input type="text" class="input" id="monthIn" placeholder="MM">
+        <p class="error"></p>
+      </div>
+      <div class="input-item">
+        <h2 class="input-title">YEAR</h2>
+        <input type="text" class="input" id="yearIn" placeholder="YYYY">
+        <p class="error"></p>
+      </div>
+    </div>
+
+    <!-- hr and button -->
+    <div class="hr-and-button">
+      <hr>
+      <button class="button" id="calculateBtn">
+        <img loading="lazy" src="./assets/images/icon-arrow.svg" alt="button arrow">
+      </button>
+    </div>
+
+    <!-- output -->
+    <div class="output-wrapper">
+      <div class="output-item">
+        <div class="output" id="yearOut">- -</div>
+        <div class="output-title">year</div>
+      </div>
+      <div class="output-item">
+        <div class="output" id="monthOut">- -</div>
+        <div class="output-title">months</div>
+      </div>
+      <div class="output-item">
+        <div class="output" id="dayOut">- -</div>
+        <div class="output-title">days</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
