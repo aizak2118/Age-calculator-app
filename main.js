@@ -8,21 +8,29 @@ const yearOut = document.getElementById("yearOut");
 const calculateBtn = document.getElementById("calculateBtn");
 const errorStyle = "0.5px solid var(--Red)";
 
-// Current Date
+// Add blur event listeners
+dayIn.addEventListener("blur", () =>
+  validateDay(dayIn.value, monthIn.value, yearIn.value)
+);
+monthIn.addEventListener("blur", () => validateMonth(monthIn.value));
+yearIn.addEventListener("blur", () =>
+  validateYear(dayIn.value, monthIn.value, yearIn.value)
+);
+
+// currentDate
 const currentDate = new Date();
 currentDate.setHours(0, 0, 0, 0);
 
-// Calculate Button
+// calculateBtn
 calculateBtn.addEventListener("click", () => {
   const D = dayIn.value;
   const M = monthIn.value;
   const Y = yearIn.value;
 
-  if (!validateDay(D, M, Y) || !validateMonth(M) || !validateYear(Y, M, D)) {
+  if (!validateDay(D, M, Y) || !validateMonth(M) || !validateYear(Y, M, D))
     return;
-  }
 
-  // Age Calculation
+  // Age calculation
   const birthday = new Date(Y, M - 1, D);
   let years = currentDate.getFullYear() - birthday.getFullYear();
   let months = currentDate.getMonth() - birthday.getMonth();
@@ -35,13 +43,13 @@ calculateBtn.addEventListener("click", () => {
     days += getNoOfDays(Y, M - 1);
   }
 
-  // Display Values
+  // Display Value
   dayOut.innerText = days;
   monthOut.innerText = months;
   yearOut.innerText = years;
 });
 
-// Get Number of Days in a particular month
+// Get Number of Days in a paticular month
 function getNoOfDays(y, m) {
   return new Date(y, m, 0).getDate();
 }
@@ -71,12 +79,12 @@ function validateMonth(M) {
   return true;
 }
 
-function validateYear(Y, M, D) {
+function validateYear(D, M, Y) {
   if (Y === "") {
     showMessage(yearIn, "This field is required");
     return false;
-  } else if (!validYear(Y, M, D)) {
-    showMessage(yearIn, "Must be in past");
+  } else if (!validYear(D, M, Y)) {
+    showMessage(yearIn, "Must be a valid year");
     return false;
   }
   showMessage(yearIn, "");
@@ -98,8 +106,16 @@ function validYear(y, m, d) {
   return new Date(y, m - 1, d) <= currentDate;
 }
 
-// Display Message
+// Show Message
 function showMessage(elem, msg) {
   elem.style.border = msg ? errorStyle : "";
   elem.nextElementSibling.innerText = msg;
+
+  // メッセージがある場合は赤くする、ない場合は元の色に戻す
+  if (msg) {
+    elem.previousElementSibling.style.color = "var(--Red)";
+  } else {
+    // 元の色に戻す
+    elem.previousElementSibling.style.color = "var(--Grey)";
+  }
 }
